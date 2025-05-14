@@ -12,16 +12,6 @@
     max-width: 504px;
 }
 
-.form-title {
-    font-family: "Museo Sans Cyrl Bold", sans-serif;
-    font-size: 48px;
-    line-height: 58px;
-}
-
-.form-title span {
-    color: #6933DC;
-}
-
 .form-details {
     margin-top: 60px;
     max-width: 485px;
