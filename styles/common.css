@@ -62,6 +62,17 @@ a {
     transition: 0.4s;
 }
 
+.button-transparent {
+    background: transparent;
+    color: #6933DC;
+    border: 1px solid #6933DC;
+}
+
+.button-transparent:hover {
+    background: #6933DC;
+    color: white;
+}
+
 .button:hover {
     background: #32098a;
 }
