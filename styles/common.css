@@ -110,3 +110,25 @@ a.button {
     line-height: 16px;
     color: #DCDCF3;
 }
+
+.right-arrow-link {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.right-arrow-link a {
+    font-size: 17px;
+    line-height: 20px;
+    color: #6933DC;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.right-arrow-link a:hover {
+    text-decoration: underline;
+}
+
+.right-arrow-link a img {
+    margin-left: 13px;
+}

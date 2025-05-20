@@ -35,3 +35,8 @@
     font-family: "Museo Sans Cyrl Bold", sans-serif;
     color: white;
 }
+
+.right-arrow-link {
+    margin-top: 80px;
+    align-self: flex-end;
+}
