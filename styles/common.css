@@ -132,3 +132,13 @@ a.button {
 .right-arrow-link a img {
     margin-left: 13px;
 }
+
+.pre-title {
+    font-size: 20px;
+    line-height: 24px;
+    color: #DCDCF3;
+}
+
+span.contrast-color {
+    color: #6933DC;
+}
