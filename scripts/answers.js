@@ -15,7 +15,7 @@
 
             let xhr = new XMLHttpRequest()
             try {
-                xhr.open('GET', 'https://testologia.ru/get-quiz?id=' + testId, false)
+                xhr.open('GET', 'https://testologia.ru/get-quiz-right?id=' + this.quiz.id, false)
                 xhr.send()
             } catch {
                 console.log('Не удалось сделать запрос! Используются статические тестовые данные')
@@ -69,8 +69,8 @@
 
                 question.answers.forEach(answer => {
                     const listItemElement = document.createElement('li')
-                    if (answer.id === userAnswer.chosenAnswerId) {
-                        listItemElement.className = correctAnswers.includes(question.id) ? 'correct' : 'wrong'
+                    if (answer.id === (userAnswer ? userAnswer.chosenAnswerId : null)) {
+                        listItemElement.className = correctAnswers.includes(answer.id) ? 'correct' : 'wrong'
                     }
                     listItemElement.innerText = answer.answer
                     listElement.appendChild(listItemElement)
