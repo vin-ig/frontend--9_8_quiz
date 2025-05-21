@@ -13,15 +13,16 @@
             }
             this.quiz = JSON.parse(quiz)
 
-            // STUB
-            // const xhr = new XMLHttpRequest()
-            // xhr.open('GET', 'https://testologia.ru/get-quiz?id=' + testId, false)
-            // xhr.send()
-
-            // TOREMOVE
-            const xhr = {
-                status: 200,
-                responseText: '[8, 11]'
+            let xhr = new XMLHttpRequest()
+            try {
+                xhr.open('GET', 'https://testologia.ru/get-quiz?id=' + testId, false)
+                xhr.send()
+            } catch {
+                console.log('Не удалось сделать запрос! Используются статические тестовые данные')
+                xhr = {
+                    status: 200,
+                    responseText: '[8, 11]'
+                }
             }
 
             if (xhr.status === 200 && xhr.responseText) {
