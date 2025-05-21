@@ -32,6 +32,7 @@
             if (xhr.status === 200 && xhr.responseText) {
                 try {
                     this.quiz = JSON.parse(xhr.responseText)
+                    sessionStorage.setItem('quiz', xhr.responseText)
                 } catch (e) {
                     location.href = 'index.html'
                 }
@@ -224,6 +225,8 @@
                     location.href = 'index.html'
                 }
                 if (result) {
+                    sessionStorage.setItem('userResult', JSON.stringify(this.userResult))
+                    sessionStorage.setItem('result', xhr.responseText)
                     location.href = `result.html?score=${result.score}&total=${result.total}`
                 }
             } else {

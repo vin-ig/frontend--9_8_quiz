@@ -1,16 +1,17 @@
 (function () {
     const Result = {
         init() {
-            const url = new URL(location.href)
-            const score = url.searchParams.get('score')
-            const total = url.searchParams.get('total')
+            const result = JSON.parse(sessionStorage.getItem('result'))
 
-            if (!score || !total) {
+            if (!result) {
                 location.href = 'index.html'
                 return
             }
 
-            document.getElementById('result').innerText = `${score}/${total}`
+            document.getElementById('result').innerText = `${result.score}/${result.total}`
+            document.getElementById('correct-answers').onclick = function () {
+                location.href = 'answers.html'
+            }
         },
     }
 

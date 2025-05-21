@@ -65,6 +65,10 @@
         processForm() {
             if (this.validateForm()) {
                 let paramString = ''
+                const userInfo = Object.fromEntries(
+                    this.fields.map(field => [field.name, field.element.value])
+                )
+                sessionStorage.setItem('userInfo', JSON.stringify(userInfo))
                 this.fields.forEach(item => {
                     paramString += (paramString ? '&' : '?') + item.name + '=' + item.element.value
                 })
