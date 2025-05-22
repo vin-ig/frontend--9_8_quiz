@@ -4,24 +4,12 @@
         init() {
             checkUserData()
 
-            let xhr = new XMLHttpRequest()
-            try {
-                xhr.open('GET', 'https://testologia.ru/get-quizzes', false)
-                xhr.send()
-            } catch (e) {
-                console.log('Не удалось сделать запрос! Используются статические тестовые данные')
-                xhr = {
-                    status: 200,
-                    responseText: '[{"id":1,"name":"\u0422\u0435\u0441\u0442 \u21161. \\"JavaScript: \u041d\u0430\u0447\u0430\u043b\u044c\u043d\u044b\u0439 \u0443\u0440\u043e\u0432\u0435\u043d\u044c\\""},{"id":2,"name":"\u0422\u0435\u0441\u0442 \u21162. \\"JavaScript: \u041f\u0440\u043e\u0434\u0432\u0438\u043d\u0443\u0442\u044b\u0439 \u0443\u0440\u043e\u0432\u0435\u043d\u044c\\""},{"id":3,"name":"\u0422\u0435\u0441\u0442 \u21163. \\"JavaScript: \u041f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0439 \u0443\u0440\u043e\u0432\u0435\u043d\u044c\\""}]'
-                }
-            }
+            this.quizzes = getParsedResponse('https://testologia.ru/get-quizzes')
 
-            if (xhr.status === 200 && xhr.responseText) {
-                try {
-                    this.quizzes = JSON.parse(xhr.responseText)
-                } catch (e) {
-                    location.href = 'index.html'
-                }
+            // STUB
+            this.quizzes = JSON.parse('[{"id":1,"name":"\u0422\u0435\u0441\u0442 \u21161. \\"JavaScript: \u041d\u0430\u0447\u0430\u043b\u044c\u043d\u044b\u0439 \u0443\u0440\u043e\u0432\u0435\u043d\u044c\\""},{"id":2,"name":"\u0422\u0435\u0441\u0442 \u21162. \\"JavaScript: \u041f\u0440\u043e\u0434\u0432\u0438\u043d\u0443\u0442\u044b\u0439 \u0443\u0440\u043e\u0432\u0435\u043d\u044c\\""},{"id":3,"name":"\u0422\u0435\u0441\u0442 \u21163. \\"JavaScript: \u041f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0439 \u0443\u0440\u043e\u0432\u0435\u043d\u044c\\""}]')
+
+            if (this.quizzes) {
                 this.processQuizzes()
             } else {
                 location.href = 'index.html'
