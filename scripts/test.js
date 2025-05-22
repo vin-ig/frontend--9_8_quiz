@@ -56,7 +56,7 @@
                 }
                 if (seconds === 0) {
                     clearInterval(interval)
-                    // this.complete()  // STUB
+                    this.complete()  // STUB
                 }
             }.bind(this), 1000)
         },
@@ -187,10 +187,12 @@
             this.showQuestion()
         },
         complete() {
-            const userInfo = sessionStorage.getItem('userInfo')
+            const userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
+            const quizId = sessionStorage.getItem('quizId')
+            // STUB
             let xhr = new XMLHttpRequest()
             try {
-                xhr.open('POST', 'https://testologia.ru/pass-quiz?id=' + id, false)
+                xhr.open('POST', 'https://testologia.ru/pass-quiz?id=' + quizId, false)
                 xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
                 xhr.send(JSON.stringify({
                     name: userInfo.name,
@@ -202,7 +204,7 @@
                 console.log('Не удалось сделать запрос! Используются статические тестовые данные')
                 xhr = {
                     status: 200,
-                    responseText: '{"score": 2, "total" : 6}'
+                    responseText: '{"score": 9, "total" : 9}'
                 }
             }
 
