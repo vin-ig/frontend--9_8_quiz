@@ -84,10 +84,11 @@
             this.optionsElement.innerHTML = ''
             const that = this
             const chosenOption = this.userResult.find(item => item.questionId === activeQuestion.id)
-            if (chosenOption) {
+            if (chosenOption && chosenOption.chosenAnswerId) {
                 this.disableLink(this.passButtonElement)
             } else {
                 this.passButtonElement.classList.remove('disabled')
+                this.passButtonElement.onclick = this.move.bind(this, 'pass')
             }
             activeQuestion.answers.forEach(answer => {
                 const optionElement = document.createElement('div')
