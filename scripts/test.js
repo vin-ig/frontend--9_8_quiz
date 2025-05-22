@@ -58,7 +58,7 @@
                 }
                 if (seconds === 0) {
                     clearInterval(interval)
-                    this.complete()
+                    // this.complete()  // STUB
                 }
             }.bind(this), 1000)
         },
@@ -86,6 +86,11 @@
             this.optionsElement.innerHTML = ''
             const that = this
             const chosenOption = this.userResult.find(item => item.questionId === activeQuestion.id)
+            if (chosenOption) {
+                this.disableLink(this.passButtonElement)
+            } else {
+                this.passButtonElement.classList.remove('disabled')
+            }
             activeQuestion.answers.forEach(answer => {
                 const optionElement = document.createElement('div')
                 optionElement.className = 'test-question-option'
@@ -133,6 +138,7 @@
         },
         chooseAnswer() {
             this.nextButtonElement.removeAttribute('disabled')
+            this.disableLink(this.passButtonElement)
         },
         move(action) {
             const activeQuestion = this.quiz.questions[this.currentQuestionIndex]
@@ -221,6 +227,10 @@
             } else {
                 location.href = 'index.html'
             }
+        },
+        disableLink(element) {
+            element.classList.add('disabled')
+            element.onclick = function () {}
         },
     }
 

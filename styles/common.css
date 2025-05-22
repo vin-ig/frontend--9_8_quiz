@@ -123,14 +123,25 @@ a.button {
     text-decoration: none;
     display: flex;
     align-items: center;
+    stroke: #6933DC;
+}
+
+.right-arrow-link a svg {
+    margin-left: 5px;
 }
 
 .right-arrow-link a:hover {
     text-decoration: underline;
 }
 
-.right-arrow-link a img {
-    margin-left: 13px;
+.right-arrow-link a.disabled {
+    cursor: not-allowed;
+    color: #DCDCF3;
+    stroke: #DCDCF3;
+}
+
+.right-arrow-link a.disabled:hover {
+    text-decoration: none;
 }
 
 .pre-title {

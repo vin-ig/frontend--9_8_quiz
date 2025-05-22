@@ -4,10 +4,12 @@
 
 .answers-pre-title {
     padding-bottom: 60px;
+    stroke: #DCDCF3;
+    display: flex;
 }
 
-.answers-pre-title img {
-    margin: 0 15px;
+.answers-pre-title svg {
+    margin: 0 5px;
 }
 
 .answers-title {
