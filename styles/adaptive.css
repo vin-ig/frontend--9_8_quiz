@@ -1,0 +1,10 @@
+@media screen and (max-width: 1229px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .main-image {
+        opacity: 0.5;
+    }
+}
