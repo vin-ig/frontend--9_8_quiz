@@ -2,8 +2,7 @@
     const Choice = {
         quizzes: [],
         init() {
-            checkUserData()
-
+            checkSessionUserData()
             this.quizzes = getParsedResponse('https://testologia.ru/get-quizzes')
 
             // STUB
@@ -48,7 +47,8 @@
         chooseQuiz(element) {
             const dataId = element.getAttribute('data-id')
             if (dataId) {
-                location.href = 'test.html' + location.search + '&id=' + dataId
+                sessionStorage.setItem('quizId', dataId)
+                location.href = 'test.html'
             }
         }
     }

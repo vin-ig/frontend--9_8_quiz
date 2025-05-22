@@ -9,6 +9,17 @@ function checkUserData() {
     }
 }
 
+function checkSessionUserData() {
+    try {
+        const userData = JSON.parse(sessionStorage.getItem('userInfo'))
+        if (!userData.name || !userData.lastName || !userData.email) {
+            throw new Error()
+        }
+    } catch {
+        location.href = 'index.html'
+    }
+}
+
 function getParsedResponse(url) {
     return null  // STUB
     const xhr = new XMLHttpRequest()
