@@ -16,10 +16,14 @@
 .main-description {
     margin-top: 40px;
     font-size: 20px;
-    line-height: 24px;
+    line-height: 1.2;
     max-width: 486px;
 }
 
 .main-button {
     margin-top: 60px;
+}
+
+.main-image img {
+    width: 100%;
 }

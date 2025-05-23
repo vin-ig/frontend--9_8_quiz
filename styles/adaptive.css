@@ -3,8 +3,61 @@
         padding-left: 15px;
         padding-right: 15px;
     }
+}
+
+
+@media screen and (max-width: 1023px) {
+    .main .container {
+        flex-direction: column;
+        position: relative;
+    }
 
     .main-image {
-        opacity: 0.5;
+        order: 1;
+        opacity: 0.1;
+        position: absolute;
+        top: 0;
+        z-index: -1;
+    }
+
+    .form .container {
+        position: relative;
+        justify-content: center;
+    }
+
+    .form-image {
+        position: absolute;
+        top: 0;
+        opacity: 0.1;
+        z-index: -1;
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+    .big-title, common-title {
+        font-size: 35px;
+    }
+
+    .main, .form {
+        padding: 110px 0;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 519px) {
+    .form-group {
+        width: auto;
+    }
+}
+
+
+@media screen and (max-width: 424px) {
+    .big-title, .common-title {
+        font-size: 28px;
+    }
+
+    .main-description {
+        font-size: 16px;
     }
 }

@@ -38,7 +38,7 @@
 }
 
 .form-group {
-    background: white;
+    background: transparent;
     border: 1px solid #C1BBBB;
     padding: 12px 23px 13px 23px;
     width: 485px;
@@ -58,6 +58,7 @@
     line-height: 22px;
     color: #6933DC;
     font-family: "Museo Sans Cyrl Bold", sans-serif;
+    background: transparent;
 }
 
 .form-label {
@@ -82,4 +83,8 @@
 
 .form-group:focus-within {
     border-left: 5px solid #6933DC;
+}
+
+.form-image img {
+    width: 100%;
 }

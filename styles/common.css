@@ -43,7 +43,7 @@ a {
 .common-title {
     font-family: "Museo Sans Cyrl Bold", sans-serif;
     font-size: 48px;
-    line-height: 58px;
+    line-height: 1.2;
 }
 
 .common-title span {
@@ -53,7 +53,7 @@ a {
 .big-title {
     font-family: "Museo Sans Cyrl Bold", sans-serif;
     font-size: 54px;
-    line-height: 65px;
+    line-height: 1.2;
 }
 
 .big-title span {
