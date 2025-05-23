@@ -59,6 +59,10 @@
         font-size: 35px;
     }
 
+    .test-question-title {
+        font-size: 24px;
+    }
+
     .main, .form {
         padding: 110px 0;
         text-align: center;
@@ -78,12 +82,29 @@
     .choice-option-arrow {
         display: none;
     }
+
+    .test-progress-bar {
+        display: none;
+    }
+
+    .test-question-title {
+        margin-top: 20px;
+    }
 }
 
 
 @media screen and (max-width: 519px) {
     .form-group {
         width: auto;
+    }
+
+    .test-actions {
+        flex-wrap: wrap;
+    }
+
+    .test-time {
+        order: 1;
+        margin-top: 12px;
     }
 }
 
