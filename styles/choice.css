@@ -9,7 +9,7 @@
 }
 
 .choice-content {
-    max-width: 583px;
+    min-width: 585px;
 }
 
 .choice-description {
@@ -20,7 +20,6 @@
 
 .choice-options {
     margin-top: 60px;
-    width: 588px;
 }
 
 .choice-option {
@@ -48,4 +47,8 @@
 
 .choice-option:hover .choice-option-arrow {
     display: block;
+}
+
+.choice-image img {
+    width: 100%;
 }
