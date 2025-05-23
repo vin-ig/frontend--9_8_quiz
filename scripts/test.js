@@ -189,24 +189,25 @@
         complete() {
             const userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
             const quizId = sessionStorage.getItem('quizId')
-            // STUB
+
             let xhr = new XMLHttpRequest()
-            try {
-                xhr.open('POST', 'https://testologia.ru/pass-quiz?id=' + quizId, false)
-                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
-                xhr.send(JSON.stringify({
-                    name: userInfo.name,
-                    lastName: userInfo.lastName,
-                    email: userInfo.email,
-                    results: this.userResult
-                }))
-            } catch {
-                console.log('Не удалось сделать запрос! Используются статические тестовые данные')
-                xhr = {
-                    status: 200,
-                    responseText: '{"score": 9, "total" : 9}'
-                }
-            }
+            xhr.open('POST', 'https://testologia.ru/pass-quiz?id=' + quizId, false)
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+            xhr.send(JSON.stringify({
+                name: userInfo.name,
+                lastName: userInfo.lastName,
+                email: userInfo.email,
+                results: this.userResult
+            }))
+            // STUB
+            // try {
+            // } catch {
+            //     console.log('Не удалось сделать запрос! Используются статические тестовые данные')
+            //     xhr = {
+            //         status: 200,
+            //         responseText: '{"score": 9, "total" : 9}'
+            //     }
+            // }
 
             if (xhr.status === 200 && xhr.responseText) {
                 let result = null
