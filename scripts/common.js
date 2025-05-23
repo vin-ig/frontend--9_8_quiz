@@ -21,7 +21,7 @@ function checkSessionUserData() {
 }
 
 function getParsedResponse(url) {
-    return null  // STUB
+    // return null  // STUB
     const xhr = new XMLHttpRequest()
     xhr.open('GET', url, false)
     xhr.send()
