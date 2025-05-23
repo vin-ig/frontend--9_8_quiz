@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quiz</title>
+    <title>Результат</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" href="images/icon.png">
     <link rel="stylesheet" href="styles/common.css"/>
     <link rel="stylesheet" href="styles/result.css"/>
+    <link rel="stylesheet" href="styles/adaptive.css"/>
 </head>
 <body>
 
@@ -23,11 +25,20 @@
             <img src="images/question-marks.png" alt="Знаки вопросов">
         </div>
         <div class="big-title result-title">Ура! Ты прошел тест! <span>Твой результат:</span></div>
-        <div class="result-score">4/5</div>
+        <div class="result-score" id="result">4/5</div>
+        <div class="right-arrow-link">
+            <a href="javascript:void(0)" id="correct-answers">Посмотреть правильные ответы
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="none" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" d="m8 4l8 8l-8 8"/>
+                </svg>
+            </a>
+        </div>
     </div>
 </main>
 
 <footer class="footer">«АйтилогияQuiz» © Все права защищены / 2025</footer>
 
+<script src="scripts/result.js"></script>
 </body>
 </html>

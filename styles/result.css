@@ -8,6 +8,7 @@
     align-items: center;
     flex-direction: column;
     position: relative;
+    overflow: hidden;
 }
 
 .result-image {
@@ -34,4 +35,9 @@
     line-height: 190px;
     font-family: "Museo Sans Cyrl Bold", sans-serif;
     color: white;
+}
+
+.right-arrow-link {
+    margin-top: 80px;
+    align-self: flex-end;
 }

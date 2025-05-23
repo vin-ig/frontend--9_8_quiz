@@ -43,7 +43,7 @@ a {
 .common-title {
     font-family: "Museo Sans Cyrl Bold", sans-serif;
     font-size: 48px;
-    line-height: 58px;
+    line-height: 1.2;
 }
 
 .common-title span {
@@ -53,7 +53,7 @@ a {
 .big-title {
     font-family: "Museo Sans Cyrl Bold", sans-serif;
     font-size: 54px;
-    line-height: 65px;
+    line-height: 1.2;
 }
 
 .big-title span {
@@ -70,6 +70,11 @@ a {
     border: 0;
     cursor: pointer;
     transition: 0.4s;
+    text-decoration: none;
+}
+
+a.button {
+    display: inline-block;
 }
 
 .button-transparent {
@@ -87,10 +92,64 @@ a {
     background: #32098a;
 }
 
+.button:disabled {
+    background: #e2dfe7;
+    cursor: not-allowed;
+}
+
+.button-transparent:disabled {
+    background: transparent;
+    color: #e2dfe7;
+    border: 1px solid #e2dfe7;
+}
+
 .footer {
     text-align: center;
     padding: 40px 0;
     font-size: 13px;
     line-height: 16px;
     color: #DCDCF3;
+}
+
+.right-arrow-link {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.right-arrow-link a {
+    font-size: 17px;
+    line-height: 20px;
+    color: #6933DC;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    stroke: #6933DC;
+}
+
+.right-arrow-link a svg {
+    margin-left: 5px;
+}
+
+.right-arrow-link a:hover {
+    text-decoration: underline;
+}
+
+.right-arrow-link a.disabled {
+    cursor: not-allowed;
+    color: #DCDCF3;
+    stroke: #DCDCF3;
+}
+
+.right-arrow-link a.disabled:hover {
+    text-decoration: none;
+}
+
+.pre-title {
+    font-size: 20px;
+    line-height: 24px;
+    color: #DCDCF3;
+}
+
+span.contrast-color {
+    color: #6933DC;
 }
