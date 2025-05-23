@@ -122,4 +122,11 @@
         font-size: 14px;
         padding: 16px 26px;
     }
+
+    .result-score {
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 30vw;
+    }
 }
