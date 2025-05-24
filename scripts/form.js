@@ -7,14 +7,14 @@
                 name: 'name',
                 id: 'name',
                 element: null,
-                regex: /^[А-ЯA-Z][а-яa-z]+\s*$/,
+                regex: /^[А-ЯЁA-Z][а-яёa-z]+\s*$/,
                 valid: false,
             },
             {
                 name: 'lastName',
                 id: 'last-name',
                 element: null,
-                regex: /^[А-ЯA-Z][а-яa-z]+\s*$/,
+                regex: /^[А-ЯЁA-Z][а-яёa-z]+\s*$/,
                 valid: false,
             },
             {
