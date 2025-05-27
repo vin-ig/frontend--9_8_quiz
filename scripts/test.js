@@ -47,7 +47,7 @@
             this.showQuestion()
 
             const timerElement = document.getElementById('timer')
-            let seconds = 59
+            let seconds = 99
             timerElement.innerText = seconds
             const interval = setInterval(function () {
                 timerElement.innerText = --seconds
