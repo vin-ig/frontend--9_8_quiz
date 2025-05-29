@@ -23,3 +23,57 @@ https://testologia.ru/get-quiz-right?id=1, где id = идентификато�
 3. Вывести на странице с результатами теста ФИО, как на фрейме «Правильные ответы (Вариант 2)»
 4. Максимально протестировать каждый шаг в разных вариантах, найти возможные баги или некорректное поведение
    функционала, и предусмотреть в своем коде эти ситуации.
+
+___
+## Использование npm
+```
+   npm init -y
+   npm -i http-server --save-dev
+```
+package.json:
+```
+  "scripts": {
+    "start": "http-server"
+  },
+```
+`npm start`
+
+## Сборка
+### JS
+```
+npm install webpack webpack-cli --save-dev
+webpack.config.js
+```
+package.json:
+```
+  "scripts": {
+    "start": "http-server",
+    "build": "webpack"
+  },
+
+```
+```
+npm run build
+npm start
+```
+### HTML
+```
+npm install --save-dev html-webpack-plugin
+npm install copy-webpack-plugin --save-dev
+```
+
+### Transpiling
+`npm install -D babel-loader @babel/core @babel/preset-env webpack`
+Удалить use.options.target
+
+## Webpack server
+`npm install -D webpack-dev-server`
+```
+  "scripts": {
+    "start": "http-server ./dist",
+    "build": "webpack",
+    "dev": "webpack serve --open"
+  },
+
+```
+`npm run dev`
