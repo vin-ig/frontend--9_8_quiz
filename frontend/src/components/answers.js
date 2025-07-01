@@ -1,28 +1,36 @@
-import {UlrManager as UrlManager} from "../utils/ulr-manager.js";
+import {Auth} from "../services/auth.js";
+import {CustomHttp} from "../services/custom-http.js";
+import config from "../../config/config.js";
 
 export class Answers {
     constructor() {
         this.quiz = null
-        this.correctAnswers = null
+        this.detailResult = null
         this.quizNameElement = null
         this.userInfoElement = null
         this.answersItemsElement = null
-        const quizId = sessionStorage.getItem('quizId')
-        if (!quizId) {
+        this.quizId = sessionStorage.getItem('quizId')
+        this.userInfo = Auth.getUserInfo()
+        if (!this.quizId || !this.userInfo) {
             location.href = '#/'
             return
         }
-        this.quiz = UrlManager.getParsedResponse('https://testologia.ru/get-quiz?id=' + quizId)
-        this.correctAnswers = UrlManager.getParsedResponse('https://testologia.ru/get-quiz-right?id=' + quizId)
 
-        // STUB
-        // this.quiz = JSON.parse('{"id":2,"name":"\u0422\u0435\u0441\u0442 \u21162. \\"JavaScript: \u041f\u0440\u043e\u0434\u0432\u0438\u043d\u0443\u0442\u044b\u0439 \u0443\u0440\u043e\u0432\u0435\u043d\u044c\\"","questions":[{"id":7,"question":"\u0427\u0442\u043e \u0442\u0430\u043a\u043e\u0435 ECMAScript?","answers":[{"id":27,"answer":"\u041d\u043e\u0432\u044b\u0439 \u044f\u0437\u044b\u043a \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f."},{"id":28,"answer":"\u041f\u0435\u0440\u0435\u0440\u0430\u0431\u043e\u0442\u0430\u043d\u043d\u0430\u044f \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f Javascript."},{"id":29,"answer":"\u0421\u043f\u0435\u0446\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f \u044f\u0437\u044b\u043a\u0430 Javascript."}]},{"id":8,"question":"\u0415\u0441\u0442\u044c \u043b\u0438 \u0440\u0430\u0437\u043d\u0438\u0446\u0430 \u043c\u0435\u0436\u0434\u0443 \u0432\u044b\u0437\u043e\u0432\u0430\u043c\u0438 i++ \u0438 ++i?","answers":[{"id":30,"answer":"\u0420\u0430\u0437\u043d\u0438\u0446\u0430 \u0432 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0438, \u043a\u043e\u0442\u043e\u0440\u043e\u0435 \u0432\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 \u0442\u0430\u043a\u043e\u0439 \u0432\u044b\u0437\u043e\u0432."},{"id":31,"answer":"\u0420\u0430\u0437\u043d\u0438\u0446\u0430 \u0432 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0438 i \u043f\u043e\u0441\u043b\u0435 \u0432\u044b\u0437\u043e\u0432\u0430."},{"id":32,"answer":"\u041d\u0435\u0442 \u043d\u0438\u043a\u0430\u043a\u043e\u0439 \u0440\u0430\u0437\u043d\u0438\u0446\u044b."}]},{"id":9,"question":"\u0412 \u0447\u0435\u043c \u0440\u0430\u0437\u043d\u0438\u0446\u0430 \u043c\u0435\u0436\u0434\u0443 confirm \u0438 prompt?","answers":[{"id":33,"answer":"confirm \u0432\u044b\u0437\u044b\u0432\u0430\u0435\u0442 \u0434\u0438\u0430\u043b\u043e\u0433\u043e\u0432\u043e\u0435 \u043e\u043a\u043d\u043e \u0441 \u043f\u043e\u043b\u0435\u043c \u0434\u043b\u044f \u0432\u0432\u043e\u0434\u0430, prompt - \u043e\u043a\u043d\u043e \u0441 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435\u043c"},{"id":34,"answer":"\u041e\u043d\u0438 \u043d\u0438\u0447\u0435\u043c \u043d\u0435 \u043e\u0442\u043b\u0438\u0447\u0430\u044e\u0442\u0441\u044f"},{"id":35,"answer":"prompt \u0432\u044b\u0437\u044b\u0432\u0430\u0435\u0442 \u0434\u0438\u0430\u043b\u043e\u0433\u043e\u0432\u043e\u0435 \u043e\u043a\u043d\u043e \u0441 \u043f\u043e\u043b\u0435\u043c \u0434\u043b\u044f \u0432\u0432\u043e\u0434\u0430, confirm - \u043e\u043a\u043d\u043e \u0441 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435\u043c"}]},{"id":10,"question":"\u0420\u0430\u0441\u0448\u0438\u0444\u0440\u0443\u0439\u0442\u0435 \u0430\u0431\u0431\u0440\u0435\u0432\u0438\u0430\u0442\u0443\u0440\u0443 DOM","answers":[{"id":36,"answer":"Document Object Model"},{"id":37,"answer":"Digital Optical Modulation"},{"id":38,"answer":"Domestic Object Mode"}]},{"id":11,"question":"\u041a\u0430\u043a\u0438\u0435 \u043a\u043b\u044e\u0447\u0435\u0432\u044b\u0435 \u0441\u043b\u043e\u0432\u0430 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044e\u0442\u0441\u044f \u0432 JavaScript \u0434\u043b\u044f \u0442\u043e\u0433\u043e, \u0447\u0442\u043e\u0431\u044b \u043e\u0431\u044a\u044f\u0432\u0438\u0442\u044c \u043f\u0435\u0440\u0435\u043c\u0435\u043d\u043d\u0443\u044e?","answers":[{"id":39,"answer":"var, let, const"},{"id":40,"answer":"byte, short, int, long, float"},{"id":41,"answer":"int, short,var"}]}]}')
-        // this.correctAnswers = JSON.parse('[28, 39, 31, 35, 38]')
+        this.init()
+    }
 
-        if (this.quiz && this.correctAnswers) {
-            this.showResult()
-        } else {
-            location.href = '#/'
+    async init() {
+        try {
+            const result = await CustomHttp.request(`${config.host}/tests/${this.quizId}/result/details?userId=${this.userInfo.userId}`)
+            if (result) {
+                if (result.error) {
+                    throw new Error(result.error)
+                }
+                this.detailResult = result
+                this.showResult()
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -30,7 +38,7 @@ export class Answers {
         this.userInfoElement = document.getElementById('user-info')
         this.answersItemsElement = document.getElementById('answers-items')
 
-        document.getElementById('quiz-name').innerText = this.quiz.name
+        document.getElementById('quiz-name').innerText = this.detailResult.test.name
         this.showUserInfo()
         this.showAnswers()
         document.getElementById('back').onclick = function () {
@@ -39,32 +47,26 @@ export class Answers {
     }
 
     showUserInfo() {
-        const userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
-        if (!userInfo) { return }
         this.userInfoElement.innerHTML = `Тест выполнил <span class="contrast-color">
-            ${userInfo.name} ${userInfo.lastName}, ${userInfo.email}
+            ${this.userInfo.fullName}, ${this.userInfo.email}
         </span>`
     }
 
     showAnswers() {
-        const correctAnswers = this.correctAnswers
-        const userResult = JSON.parse(sessionStorage.getItem('userResult'))
-
-        this.quiz.questions.forEach((question, index) => {
+        this.detailResult.test.questions.forEach((question, index) => {
             const answerItemElement = document.createElement('div')
             answerItemElement.className = 'answers-item'
             const AnswerNameElement = document.createElement('h3')
             AnswerNameElement.innerHTML = `<span class="contrast-color">Вопрос ${index + 1}: </span>${question.question}`
             const listElement = document.createElement('ul')
 
-            const userAnswer = userResult.find(item => item.questionId === question.id)
-
             question.answers.forEach(answer => {
                 const listItemElement = document.createElement('li')
-                if (answer.id === (userAnswer ? userAnswer.chosenAnswerId : null)) {
-                    listItemElement.className = correctAnswers.includes(answer.id) ? 'correct' : 'wrong'
-                }
+
                 listItemElement.innerText = answer.answer
+                if (answer.hasOwnProperty('correct')) {
+                    listItemElement.className = answer.correct  ? 'correct' : 'wrong'
+                }
                 listElement.appendChild(listItemElement)
             })
 
