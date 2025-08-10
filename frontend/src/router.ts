@@ -1,11 +1,21 @@
-import {Form} from "./components/form.js";
-import {Choice} from "./components/choice.js";
-import {Test} from "./components/test.js";
-import {Result} from "./components/result.js";
-import {Answers} from "./components/answers.js";
-import {Auth} from "./services/auth.js";
+import {Form} from "./components/form";
+import {Choice} from "./components/choice";
+import {Test} from "./components/test";
+import {Result} from "./components/result";
+import {Answers} from "./components/answers";
+import {Auth} from "./services/auth";
+import type {RouteType} from "./types/route.type";
+import type {UserInfoType} from "./types/user-info.type";
 
 export class Router {
+    readonly contentElement: HTMLElement | null
+    readonly stylesElement: HTMLElement | null
+    readonly titleElement: HTMLElement | null
+    readonly profileElement: HTMLElement | null
+    readonly profileFullNameElement: HTMLElement | null
+
+    private routes: RouteType[]
+
     constructor() {
         this.contentElement = document.getElementById('content')
         this.stylesElement = document.getElementById('styles')
@@ -78,15 +88,17 @@ export class Router {
         ]
     }
 
-    async openRoute() {
-        const urlRoute = window.location.hash
+    public async openRoute(): Promise<void> {
+        const urlRoute: string = window.location.hash
         if (urlRoute === '#/logout') {
-            await Auth.logout()
-            window.location.href = '#/'
-            return
+            const result: boolean = await Auth.logout()
+            if (result) {
+                window.location.href = '#/'
+                return
+            }
         }
 
-        const newRoute = this.routes.find(item => {
+        const newRoute: RouteType | undefined = this.routes.find(item => {
             return item.route === urlRoute
         })
 
@@ -95,12 +107,21 @@ export class Router {
             return
         }
 
+        if (!this.contentElement || !this.stylesElement || !this.titleElement ||
+            !this.profileElement || !this.profileFullNameElement || !this.profileElement) {
+            if (urlRoute === '#/') {
+                return
+            }
+            window.location.href = '#/'
+            return
+        }
+
         this.contentElement.innerHTML = await fetch(newRoute.template).then(response => response.text())
         this.stylesElement.setAttribute('href', newRoute.styles)
         this.titleElement.innerText = newRoute.title
 
-        const userInfo = Auth.getUserInfo()
-        const accessToken = localStorage.getItem(Auth.accessTokenKey)
+        const userInfo: UserInfoType | null = Auth.getUserInfo()
+        const accessToken: string | null = localStorage.getItem(Auth.accessTokenKey)
         if (userInfo && accessToken) {
             this.profileElement.style.display = 'flex'
             this.profileFullNameElement.innerText = userInfo.fullName

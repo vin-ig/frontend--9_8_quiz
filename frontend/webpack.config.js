@@ -3,8 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    entry: './src/app.js',
+    entry: './src/app.ts',
     mode: 'development',
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+    },
+    devtool: 'inline-source-map',
     devServer: {
         static: '.dist',
         compress: true,
@@ -31,17 +35,10 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(?:js|mjs|cjs)$/,
+                test: /\.tsx?$/,
+                use: 'ts-loader',
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            ['@babel/preset-env']
-                        ]
-                    }
-                }
-            }
+            },
         ]
     }
 };
